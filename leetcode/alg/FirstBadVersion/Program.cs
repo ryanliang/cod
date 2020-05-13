@@ -6,32 +6,35 @@ namespace FirstBadVersion
     {
         static void Main(string[] args)
         {
-            Console.WriteLine(FirstBadVersion(5));
+            Console.WriteLine(FirstBadVersion(10));
 
         }
 
         static bool IsBadVersion(int version)
         {
-            return version == 4;
+            return version >= 3;
         }
 
         static int FirstBadVersion(int n)
         {
-            return FirstBadVersionBetween(1, n);
-        }
+            var start = 1;
+            var end = n;
 
-        static int FirstBadVersionBetween(int start, int end)
-        {
-            if (end - start == 1)
+            while(start < end)
             {
-                return IsBadVersion(start) ? start : end;
+                var mid = (start + end + 1) / 2;
+                if(IsBadVersion(mid))
+                {
+                    end = mid;
+                }
+                else
+                {
+                    start = mid + 1;
+                }
             }
-
-            var middle = (end+start+1)/2;
-
-            return IsBadVersion(middle) ?
-                FirstBadVersionBetween(start, middle) :
-                FirstBadVersionBetween(middle + 1, end); 
+            return start;
         }
+
+
     }
 }
