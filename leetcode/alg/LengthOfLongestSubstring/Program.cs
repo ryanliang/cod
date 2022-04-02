@@ -3,6 +3,20 @@ using System.Collections.Generic;
 
 namespace LengthOfLongestSubstring
 {
+
+    public interface IProducable : IProducable<int>
+    {
+        
+    }
+
+    public interface IProducable<T> where T : IComparable<T>
+    {
+
+    }
+
+    
+
+
     class Program
     {
         static void Main(string[] args)
